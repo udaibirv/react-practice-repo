@@ -1,38 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Home from './pages/home';
 
-const App = props => {
-  const [state, setState] = useState({
-    england: [],
-    season: ''
-  });
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [person, setPerson] = useState(null);
 
-  const getEngalndInfo = info => {
-    setState({ england: info });
-  };
+  useEffect(async () => {
+    const response = await fetch('https://randomuser.me/api/');
+    const data = await response.json();
+    const [item] = data.results;
+    setPerson(item);
+  }, []);
 
-  useEffect(() => {
-    fetch('/api/leauge-info/england')
-      .then(response => {
-        return response.json();
-      })
-      .then(result => {
-        const table = result.response[0].league.standings;
-        table.map((club, index) => {
-          return (
-            setState({ england: club, season: '16/17' })
-          );
-        });
+  return (
 
-      });
-  });
-  const content = (
-
-    <h1>Hello</h1>
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click Me</button>
+      {person && <div>{person.name.first}</div>}
+    </div>
   );
-
-  return content;
-
 };
-
 export default App;

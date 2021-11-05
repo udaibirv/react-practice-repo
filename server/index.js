@@ -2,6 +2,7 @@ require('dotenv/config');
 const express = require('express');
 const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
+const request = require('request');
 
 const app = express();
 
@@ -10,7 +11,7 @@ app.use(staticMiddleware);
 app.use(errorMiddleware);
 
 app.get('/api/leauge-info/england', (req, res) => {
-  req(
+  request(
     {
       url: 'https://v3.football.api-sports.io/standings?league=39&season=2020',
       headers: {
