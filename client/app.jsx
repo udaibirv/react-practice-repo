@@ -26,7 +26,10 @@ const App = () => {
       {
         club.map((teamName, key) => {
           return (
+            <>
             <h1 key={key}>{teamName.team.name}</h1>
+
+            </>
           );
         })
       }
