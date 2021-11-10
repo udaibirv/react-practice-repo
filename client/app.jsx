@@ -33,6 +33,20 @@ const App = () => {
       });
   };
 
+  const fetchData2021 = () => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    fetch('/api/leauge-info/england/2021', requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        const table = data.response;
+        const leagueTable = data.response[0].league.standings[0];
+        setTeam(leagueTable);
+      });
+  };
+
   useEffect(() => {
     fetchData2020();
 
@@ -42,6 +56,7 @@ const App = () => {
 
     <div>
       <button className="england-button btn btn-sm" onClick={fetchData2018}>18/19</button>
+      <button className="england-button btn btn-sm" onClick={fetchData2021}>21/22</button>
       {
         club.map((teamName, key) => {
           return (
