@@ -30,6 +30,26 @@ app.get('/api/leauge-info/england', (req, res) => {
 
 });
 
+app.get('/api/leauge-info/england/2018', (req, res) => {
+  request(
+    {
+      url: 'https://v3.football.api-sports.io/standings?league=39&season=2018',
+      headers: {
+        'x-apisports-key': '55079badf90d509b71c69c823d5f377e',
+        'Content-Type': 'application/json'
+      }
+    },
+    (error, response, body) => {
+      if (error || response.statusCode !== 200) {
+        return res.status(500).json({ type: 'error', message: error.message });
+      }
+
+      res.json(JSON.parse(body));
+    }
+  );
+
+});
+
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`express server listening on port ${process.env.PORT}`);
