@@ -14,8 +14,10 @@ const App = () => {
       .then(response => response.json())
       .then(data => {
         const table = data.response;
+        const currentSeason = data.response[0].league.season;
         const leagueTable = data.response[0].league.standings[0];
         setTeam(leagueTable);
+        setSeason(currentSeason);
       });
 
   };
@@ -67,7 +69,8 @@ const App = () => {
         club.map((teamName, key) => {
           return (
             <>
-            <h3 key={key}>{teamName.team.name}</h3>
+
+            <h3 key={key}> {teamName.team.name}</h3>
 
             </>
           );
