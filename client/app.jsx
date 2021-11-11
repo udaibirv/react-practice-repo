@@ -3,6 +3,7 @@ import Home from './pages/home';
 
 const App = () => {
   const [club, setTeam] = useState([]);
+  const [season, setSeason] = useState('');
 
   const fetchData2018 = () => {
     const requestOptions = {
@@ -28,8 +29,10 @@ const App = () => {
       .then(response => response.json())
       .then(data => {
         const table = data.response;
+        const currentSeason = data.response[0].league.season;
         const leagueTable = data.response[0].league.standings[0];
         setTeam(leagueTable);
+        setSeason(currentSeason);
       });
   };
 
@@ -50,7 +53,7 @@ const App = () => {
   useEffect(() => {
     fetchData2020();
 
-  }, [setTeam]);
+  }, [setTeam, setSeason]);
 
   return (
 
@@ -61,7 +64,8 @@ const App = () => {
         club.map((teamName, key) => {
           return (
             <>
-            <h1 key={key}>{teamName.team.name}</h1>
+            <h1>{season}</h1>
+            <h3 key={key}>{teamName.team.name}</h3>
 
             </>
           );
