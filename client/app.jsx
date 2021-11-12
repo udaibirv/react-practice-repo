@@ -1,9 +1,9 @@
 import React from 'react';
-import { FormPractice, formPractice } from './pages/form';
+import { Authform } from './pages/form';
 
 const App = () => {
   return (
-    <FormPractice/>
+    <Authform/>
   );
 };
 export default App;
