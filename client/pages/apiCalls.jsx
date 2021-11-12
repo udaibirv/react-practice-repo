@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-const apiCalls = () => {
+const ApiCalls = () => {
   const [club, setTeam] = useState([]);
   const [season, setSeason] = useState('');
 
@@ -77,4 +77,4 @@ const apiCalls = () => {
     </div>
   );
 };
-export default apiCalls;
+export default ApiCalls;

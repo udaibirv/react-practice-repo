@@ -1,49 +1,41 @@
 import React, { useState } from 'react';
 
-export const FormPractice = () => {
+export const Authform = () => {
+
   const [values, setValues] = useState({
     firstName: '',
     lastName: '',
-    phoneNumber: ''
+    phone: ''
   });
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault();
 
   };
-  const handleFirstNameInputChange = event => {
-    setValues({ ...values, firstName: event.target.value });
+
+  const handleFirst = e => {
+    setValues({ ...values, firstName: e.target.value });
+
   };
 
-  const handleLastNameInputChange = event => {
-    setValues({ ...values, lastName: event.target.value });
+  const handleLast = e => {
+    setValues({ ...values, lastName: e.target.value });
   };
 
-  const handlePhoneNumberInputChange = event => {
-    setValues({ ...values, phoneNumber: event.target.value });
+  const handlePhone = e => {
+    setValues({ ...values, phone: e.target.value });
   };
+
   return (
-    <div className="form-container">
-      <form className="register-form">
-        <input
-          onChange={handleFirstNameInputChange}
-          value={values.firstName}
-          className="form-field"
-          placeholder="First Name"
-          name="firstName" />
-        <input
-          onChange={handleLastNameInputChange}
-          value={values.lastName}
-          className="form-field"
-          placeholder="Last Name"
-          name="Last Name" />
-        <input
-          onChange={handlePhoneNumberInputChange}
-          value={values.phoneNumber}
-          className="form-field"
-          placeholder="Phone Number"
-          name="phoneNumber" />
-        <button onClick={handleSubmit} type="button">Submit</button>
+    <div className="form">
+      <form>
+        <label>First Name: </label>
+        <input required id="firstName" name="firstName" value={values.firstName} onChange={handleFirst} />
+        <label>Last Name: </label>
+        <input required id="lastName" name="lastName" value={values.lastName} onChange={handleLast} />
+        <label>Phone Number: </label>
+        <input required id="phone" name="phone" value={values.phone} onChange={handlePhone} />
+        <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );

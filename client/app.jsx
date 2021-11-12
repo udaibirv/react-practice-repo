@@ -1,9 +1,10 @@
 import React from 'react';
-import { FormPractice, formPractice } from './pages/form';
+import { Authform } from './pages/form';
+import ApiCalls from './pages/apiCalls';
 
 const App = () => {
   return (
-    <FormPractice/>
+    <ApiCalls/>
   );
 };
 export default App;
