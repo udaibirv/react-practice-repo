@@ -1,9 +1,10 @@
 import React from 'react';
 import { Authform } from './pages/form';
+import ApiCalls from './pages/apiCalls';
 
 const App = () => {
   return (
-    <Authform/>
+    <ApiCalls/>
   );
 };
 export default App;
