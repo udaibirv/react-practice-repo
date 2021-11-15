@@ -1,10 +1,10 @@
 import React from 'react';
 import { Authform } from './pages/form';
-import ApiCalls from './pages/apiCalls';
+import FixtureList from './pages/fixtureList';
 
 const App = () => {
   return (
-    <ApiCalls/>
+    <FixtureList/>
   );
 };
 export default App;
