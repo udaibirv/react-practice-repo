@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 const FixtureList = () => {
 
   const [venue, setVenue] = useState('');
+  const [score, setScore] = useState({
+    home: '',
+    away: ''
+  });
 
   const getSchedule = () => {
     const requestOptions = {
@@ -12,27 +16,28 @@ const FixtureList = () => {
     fetch('/api/league-fixtures/england', requestOptions)
       .then(response => response.json())
       .then(data => {
-        const info = data.response;
-        const leagueInfo = info.map((team, key) => {
-          return team.fixture.venue.name;
-        });
-        setVenue(leagueInfo);
-
+        const info = data.response[0].score.fulltime.home;
+        const infoAway = data.response[0].score.fulltime.away;
+        setScore({ ...score, home: info, away: infoAway });
       });
+
+    // const result = info.map((data, j) => {
+    //   return data.score.fulltime;
+    // });
+    // result.map((info, j) => {
+    //   return (
+    //     setScore({ ...score, home: info.home, away: info.away })
+    //   );
+    // });
+
   };
 
   useEffect(() => {
     getSchedule();
-  }, [setVenue]);
+  }, [setVenue, setScore]);
 
   return (
-    <div>
-    <h1>Home Venues for 10/30 fixtures</h1>
-
-    <ol>
-      <li>{venue}</li>
-    </ol>
-  </div>
+    <h1>Home: {score.home} Away: {score.away}</h1>
   );
 };
 
