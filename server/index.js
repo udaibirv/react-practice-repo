@@ -73,7 +73,7 @@ app.get('/api/leauge-info/england/2021', (req, res) => {
 app.get('/api/league-fixtures/england', (req, res) => {
   request(
     {
-      url: 'https://v3.football.api-sports.io/fixtures?league=39&season=2021&date=2021-10-30',
+      url: 'https://v3.football.api-sports.io/fixtures?league=39&season=2021&date=2021-10-02',
       headers: {
         'x-apisports-key': '55079badf90d509b71c69c823d5f377e',
         'Content-Type': 'application/json'
