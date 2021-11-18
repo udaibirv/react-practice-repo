@@ -1,43 +1,81 @@
 import React, { useState, useEffect } from 'react';
 
 const FixtureList = () => {
+  const [club, setTeam] = useState([]);
+  const [season, setSeason] = useState('');
 
-  const [venue, setVenue] = useState('');
-  const [score, setScore] = useState({
-    home: '',
-    away: ''
-  });
-
-  const getSchedule = () => {
+  const fetchData2018 = () => {
     const requestOptions = {
       method: 'GET',
       redirect: 'follow'
     };
-    fetch('/api/league-fixtures/england', requestOptions)
+    fetch('/api/leauge-info/england/2018', requestOptions)
       .then(response => response.json())
       .then(data => {
-        const info = data.response[0].score.fulltime.home;
-        const infoAway = data.response[0].score.fulltime.away;
-        setScore({ ...score, home: info, away: infoAway });
+        const table = data.response;
+        const currentSeason = data.response[0].league.season;
+        const leagueTable = data.response[0].league.standings[0];
+        setTeam(leagueTable);
+        setSeason(currentSeason);
       });
-
-    // const result = info.map((data, j) => {
-    //   return data.score.fulltime;
-    // });
-    // result.map((info, j) => {
-    //   return (
-    //     setScore({ ...score, home: info.home, away: info.away })
-    //   );
-    // });
 
   };
 
+  const fetchData2020 = () => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    fetch('/api/leauge-info/england', requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        const table = data.response;
+        const currentSeason = data.response[0].league.season;
+        const leagueTable = data.response[0].league.standings[0];
+        setTeam(leagueTable);
+        setSeason(currentSeason);
+      });
+  };
+
+  const fetchData2021 = () => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    fetch('/api/leauge-info/england/2021', requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        const table = data.response;
+        const currentSeason = data.response[0].league.season;
+        const leagueTable = data.response[0].league.standings[0];
+        setTeam(leagueTable);
+        setSeason(currentSeason);
+      });
+  };
+
   useEffect(() => {
-    getSchedule();
-  }, [setVenue, setScore]);
+    fetchData2020();
+
+  }, [setTeam, setSeason]);
 
   return (
-    <h1>Home: {score.home} Away: {score.away}</h1>
+
+    <div>
+      <button className="england-button btn btn-sm" onClick={fetchData2018}>18/19</button>
+      <button className="england-button btn btn-sm" onClick={fetchData2021}>21/22</button>
+      <h1> Season: {season}</h1>
+      {
+        club.map((teamName, key) => {
+          return (
+            <>
+
+            <h3 key={key}> {teamName.team.name}</h3>
+
+            </>
+          );
+        })
+      }
+    </div>
   );
 };
 
