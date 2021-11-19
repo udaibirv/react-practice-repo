@@ -71,9 +71,29 @@ app.get('/api/leauge-info/england/2021', (req, res) => {
 });
 
 app.get('/api/league-fixtures/england', (req, res) => {
+  let date;
   request(
     {
-      url: 'https://v3.football.api-sports.io/fixtures?league=39&season=2021&date=2021-10-02',
+      url: `https://v3.football.api-sports.io/fixtures?league=39&season=2021&date=${date}`,
+      headers: {
+        'x-apisports-key': '55079badf90d509b71c69c823d5f377e',
+        'Content-Type': 'application/json'
+      }
+    },
+    (error, response, body) => {
+      if (error || response.statusCode !== 200) {
+        return res.status(500).json({ type: 'error', message: error.message });
+      }
+
+      res.json(JSON.parse(body));
+    }
+  );
+});
+
+app.get('/api/england-top-scorers/2021', (req, res) => {
+  request(
+    {
+      url: 'https://v3.football.api-sports.io/players/topscorers?season=2021&league=39',
       headers: {
         'x-apisports-key': '55079badf90d509b71c69c823d5f377e',
         'Content-Type': 'application/json'

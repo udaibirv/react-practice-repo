@@ -1,75 +1,43 @@
 import React, { useState, useEffect } from 'react';
 
 const FixtureList = () => {
-  const [club, setTeam] = useState([]);
-  const [season, setSeason] = useState('');
 
-  const fetchData2018 = () => {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    fetch('/api/leauge-info/england/2018', requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        const table = data.response;
-        const currentSeason = data.response[0].league.season;
-        const leagueTable = data.response[0].league.standings[0];
-        setTeam(leagueTable);
-        setSeason(currentSeason);
-      });
-
-  };
-
-  const fetchData2020 = () => {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    fetch('/api/leauge-info/england', requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        const table = data.response;
-        const currentSeason = data.response[0].league.season;
-        const leagueTable = data.response[0].league.standings[0];
-        setTeam(leagueTable);
-        setSeason(currentSeason);
-      });
-  };
+  const [player, setPlayer] = useState([]);
 
   const fetchData2021 = () => {
     const requestOptions = {
       method: 'GET',
       redirect: 'follow'
     };
-    fetch('/api/leauge-info/england/2021', requestOptions)
+    fetch('/api/england-top-scorers/2021', requestOptions)
       .then(response => response.json())
       .then(data => {
         const table = data.response;
-        const currentSeason = data.response[0].league.season;
-        const leagueTable = data.response[0].league.standings[0];
-        setTeam(leagueTable);
-        setSeason(currentSeason);
+        const scorerTable = table.map((club, key) => {
+          return club;
+        });
+
+        setPlayer(scorerTable);
+
       });
   };
 
   useEffect(() => {
-    fetchData2020();
+    fetchData2021();
 
-  }, [setTeam, setSeason]);
+  }, [setPlayer]);
 
   return (
 
     <div>
-      <button className="england-button btn btn-sm" onClick={fetchData2018}>18/19</button>
-      <button className="england-button btn btn-sm" onClick={fetchData2021}>21/22</button>
-      <h1> Season: {season}</h1>
+
+      <h1> Season: </h1>
       {
-        club.map((teamName, key) => {
+        player.map((first, key) => {
           return (
             <>
 
-            <h3 key={key}> {teamName.team.name}</h3>
+            <h3 key={key}>{first.player.name}</h3>
 
             </>
           );
