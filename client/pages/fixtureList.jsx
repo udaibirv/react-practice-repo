@@ -16,7 +16,7 @@ const FixtureList = () => {
         const scorerTable = table.map((club, key) => {
           return club;
         });
-
+        console.log(scorerTable);
         setPlayer(scorerTable);
 
       });
@@ -31,16 +31,20 @@ const FixtureList = () => {
 
     <div>
 
-      <h1> Season: </h1>
       {
         player.map((first, key) => {
           return (
             <>
 
-            <h3 key={key}>{first.player.name}</h3>
+              <h1>{first.player.name } - {first.statistics[0].team.name} / {first.statistics[0].games.appearences} Appereances</h1>
+
+              <li>{first.statistics[0].goals.total} goals</li>
+              <li>{first.statistics[0].shots.on} shots on target</li>
+              <li>{first.statistics[0].goals.assists} Assists</li>
 
             </>
           );
+
         })
       }
     </div>
