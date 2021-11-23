@@ -42,6 +42,7 @@ const FixtureList = () => {
               <li key={key}>{first.statistics[0].shots.on} shots on target</li>
               <li key={key}>{first.statistics[0].goals.assists} Assists</li>
               <li key={key}>{first.statistics[0].passes.key} Key Passes</li>
+              <li key={key}>{first.statistics[0].duels.won} Duals Won</li>
 
             </>
           );
