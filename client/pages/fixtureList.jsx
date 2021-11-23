@@ -36,11 +36,12 @@ const FixtureList = () => {
           return (
             <>
 
-              <h1>{first.player.name } - {first.statistics[0].team.name} / {first.statistics[0].games.appearences} Appereances</h1>
+              <h1 key={key}>{first.player.name } - {first.statistics[0].team.name} / {first.statistics[0].games.appearences} Appereances</h1>
 
-              <li>{first.statistics[0].goals.total} goals</li>
-              <li>{first.statistics[0].shots.on} shots on target</li>
-              <li>{first.statistics[0].goals.assists} Assists</li>
+              <li key={key}>{first.statistics[0].goals.total} goals</li>
+              <li key={key}>{first.statistics[0].shots.on} shots on target</li>
+              <li key={key}>{first.statistics[0].goals.assists} Assists</li>
+              <img key={key} src={first.player.photo}></img>
 
             </>
           );
