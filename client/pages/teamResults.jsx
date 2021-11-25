@@ -34,12 +34,17 @@ const TeamResults = () => {
           team.map((club, key) => {
             return (
               <div key={key}>
-                <h1>{club.fixture.date.charat}</h1>
-                <h1>{club.fixture.venue.name}</h1>
-                <h1>{club.teams.home.name}</h1>
-                <h1>{club.teams.away.name}</h1>
+                <h1> Fixture Date: {club.fixture.date.slice(0, 10)}</h1>
+                <h1> Venue: {club.fixture.venue.name}</h1>
+                <img src={club.teams.home.logo}></img>
+                <h1> Home: {club.teams.home.name} - {club.goals.home}
+                </h1>
+                <img src={club.teams.away.logo}></img>
+                <h1> Away: {club.teams.away.name} - {club.goals.away}
+
+                </h1>
+
               </div>
-            // <h1 key={key}>{club.fixture.venue.name}</h1>
 
             );
           })
