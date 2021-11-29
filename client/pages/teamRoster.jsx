@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const TeamResults = () => {
-  const [team, setTeam] = useState([]);
+const TeamRoster = () => {
 
-  const headToHead = () => {
+  const [club, setPlayers] = useState([]);
+
+  const getRoster = () => {
     const requestOptions = {
       method: 'GET',
       redirect: 'follow'
     };
-
     fetch('/api/leauge-info/england-games', requestOptions)
       .then(response => response.json())
       .then(data => {
@@ -17,21 +17,21 @@ const TeamResults = () => {
           return club;
         });
 
-        setTeam(scorerTable);
+        setPlayers(scorerTable);
 
       });
   };
 
   useEffect(() => {
-    headToHead();
+    getRoster();
 
-  }, [setTeam]);
+  }, [setPlayers]);
 
   return (
-    <div>
+      <div>
       <>
         {
-          team.map((club, key) => {
+          club.map((club, key) => {
             return (
               <div key={key}>
                 <h1> Fixture Date: {club.fixture.date.slice(0, 10)}</h1>
@@ -51,7 +51,9 @@ const TeamResults = () => {
         }
       </>
     </div>
+
   );
+
 };
 
-export default TeamResults;
+export default TeamRoster;
