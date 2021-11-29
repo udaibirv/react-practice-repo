@@ -16,7 +16,7 @@ const TeamResults = () => {
         const scorerTable = table.map((club, key) => {
           return club;
         });
-        console.log(scorerTable);
+
         setTeam(scorerTable);
 
       });
