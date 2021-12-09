@@ -9,7 +9,7 @@ const TeamRoster = () => {
       method: 'GET',
       redirect: 'follow'
     };
-    fetch('/api/leauge-info/england-games', requestOptions)
+    fetch('/api/team-roster', requestOptions)
       .then(response => response.json())
       .then(data => {
         const table = data.response;
@@ -30,25 +30,39 @@ const TeamRoster = () => {
   return (
       <div>
       <>
+
+      <div className="table col-lg- col-md col-sm  table-border">
+                <thead>
+                  <tr>
+                    <th scope="row">Player</th>
+                    <th scope="row">Position</th>
+                    <th scope ="row">Age</th>
+                    <th scoe="row">Number</th>
+                  </tr>
+                </thead>
+                <tbody>
+
         {
           club.map((club, key) => {
             return (
-              <div key={key}>
-                <h1> Fixture Date: {club.fixture.date.slice(0, 10)}</h1>
-                <h1> Venue: {club.fixture.venue.name}</h1>
-                <img src={club.teams.home.logo}></img>
-                <h1> Home: {club.teams.home.name} - {club.goals.home}
-                </h1>
-                <img src={club.teams.away.logo}></img>
-                <h1> Away: {club.teams.away.name} - {club.goals.away}
-
-                </h1>
-
-              </div>
+              club.players.map((player, j) => {
+                return (
+                  <tr key={key} scope="col">
+                    <td scope="col">{player.name}
+                      <img src={player.photo} />
+                      </td>
+                    <td scope="col">{player.position}</td>
+                    <td scope="col">{player.age}</td>
+                    <td scope="col">{player.number}</td>
+                  </tr>
+                );
+              })
 
             );
           })
         }
+      </tbody>
+      </div>
       </>
     </div>
 
