@@ -16,7 +16,7 @@ const TeamRoster = () => {
         const scorerTable = table.map((club, key) => {
           return club;
         });
-        console.log(scorerTable);
+
         setPlayers(scorerTable);
 
       });
@@ -30,7 +30,8 @@ const TeamRoster = () => {
   return (
       <div>
       <>
-      <div className="table table-border">
+
+      <div className="table col-lg- col-md col-sm  table-border">
                 <thead>
                   <tr>
                     <th scope="row">Player</th>
@@ -51,6 +52,8 @@ const TeamRoster = () => {
                       <img src={player.photo} />
                       </td>
                     <td scope="col">{player.position}</td>
+                    <td scope="col">{player.age}</td>
+                    <td scope="col">{player.number}</td>
                   </tr>
                 );
               })
