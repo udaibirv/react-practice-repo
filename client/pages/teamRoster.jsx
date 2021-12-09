@@ -30,21 +30,36 @@ const TeamRoster = () => {
   return (
       <div>
       <>
+      <div className="table table-border">
+                <thead>
+                  <tr>
+                    <th scope="row">Player</th>
+                    <th scope="row">Position</th>
+                    <th scope ="row">Age</th>
+                    <th scoe="row">Number</th>
+                  </tr>
+                </thead>
+                <tbody>
+
         {
           club.map((club, key) => {
             return (
               club.players.map((player, j) => {
                 return (
-              <div key={j}>
-                <h1>{player.name}</h1>
-              </div>
-
+                  <tr key={key} scope="col">
+                    <td scope="col">{player.name}
+                      <img src={player.photo} />
+                      </td>
+                    <td scope="col">{player.position}</td>
+                  </tr>
                 );
               })
 
             );
           })
         }
+      </tbody>
+      </div>
       </>
     </div>
 
