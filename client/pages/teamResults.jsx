@@ -46,7 +46,9 @@ const TeamResults = () => {
           scorer.map((club, key) => {
             return (
               <tr scope="row" key={key}>
-                <td>{club.player.name}</td>
+                <td>{club.player.name}
+                    <img src={club.player.photo}/>
+                </td>
                 <td> {club.statistics[0].team.name} </td>
                 <td>{club.statistics[0].games.appearences}</td>
                 <td> {club.statistics[0].goals.total} </td>
