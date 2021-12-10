@@ -6,7 +6,7 @@ import TeamRoster from './pages/teamRoster';
 
 const App = () => {
   return (
-    <TeamRoster/>
+    <TeamResults/>
   );
 };
 export default App;

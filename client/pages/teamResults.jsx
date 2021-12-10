@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 const TeamResults = () => {
-  const [team, setTeam] = useState([]);
+  const [scorer, setScorer] = useState([]);
+  // const [season, setSeason] = useState([]);
 
   const headToHead = () => {
     const requestOptions = {
@@ -9,15 +10,14 @@ const TeamResults = () => {
       redirect: 'follow'
     };
 
-    fetch('/api/leauge-info/england-games', requestOptions)
+    fetch('/api/england-top-scorers/2021', requestOptions)
       .then(response => response.json())
       .then(data => {
         const table = data.response;
         const scorerTable = table.map((club, key) => {
           return club;
         });
-
-        setTeam(scorerTable);
+        setScorer(scorerTable);
 
       });
   };
@@ -25,31 +25,40 @@ const TeamResults = () => {
   useEffect(() => {
     headToHead();
 
-  }, [setTeam]);
+  }, [setScorer]);
 
   return (
-    <div>
-      <>
+    <div className="table table-responsive">
+      <div className='header'>
+        <h1>Top Scorers 21/22 Season</h1>
+      </div>
+      <thead>
+              <tr>
+                <th scope="col">Player</th>
+                <th scope="col">Club</th>
+                <th scope="col">Apps</th>
+                <th scope="col">Goals</th>
+              </tr>
+            </thead>
+            <tbody>
+
         {
-          team.map((club, key) => {
+          scorer.map((club, key) => {
             return (
-              <div key={key}>
-                <h1> Fixture Date: {club.fixture.date.slice(0, 10)}</h1>
-                <h1> Venue: {club.fixture.venue.name}</h1>
-                <img src={club.teams.home.logo}></img>
-                <h1> Home: {club.teams.home.name} - {club.goals.home}
-                </h1>
-                <img src={club.teams.away.logo}></img>
-                <h1> Away: {club.teams.away.name} - {club.goals.away}
-
-                </h1>
-
-              </div>
+              <tr scope="row" key={key}>
+                <td>{club.player.name}
+                    <img src={club.player.photo}/>
+                </td>
+                <td> {club.statistics[0].team.name} </td>
+                <td>{club.statistics[0].games.appearences}</td>
+                <td> {club.statistics[0].goals.total} </td>
+              </tr>
 
             );
           })
         }
-      </>
+
+        </tbody>
     </div>
   );
 };
