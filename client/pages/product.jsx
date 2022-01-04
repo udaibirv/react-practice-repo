@@ -1,9 +1,13 @@
 import React from 'react';
-import ProductDescription from './productDescription';
 
-const Product = props => {
+const Product = ({ name, description, price }) => {
   return (
-    <h1>Hello</h1>
+    <div>
+      <h1>{name}</h1>
+      <h3>{description}</h3>
+      <h2>{price}</h2>
+    </div>
+
   );
 };
 
